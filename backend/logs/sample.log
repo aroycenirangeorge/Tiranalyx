@@ -1,0 +1,5 @@
+2026-08-03 09:10:21 INFO User login successful
+2026-08-03 09:11:15 WARNING Disk usage at 85%
+2026-08-03 09:12:44 ERROR Database connection timeout
+2026-08-03 09:13:52 INFO Payment completed
+2026-08-03 09:15:04 ERROR Failed to connect Redis

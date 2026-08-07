@@ -1,11 +1,12 @@
-from django.shortcuts import render
-
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, parser_classes
 from rest_framework.response import Response
-from rest_framework.parsers import MultiPartParser
-from .parser import parse_log
+from rest_framework.parsers import MultiPartParser, FormParser
 
-@api_view(['GET'])
+from .parser import parse_log
+from .serializers import LogUploadSerializer
+
+
+@api_view(["GET"])
 def health(request):
     return Response({
         "status": "running",
@@ -14,15 +15,18 @@ def health(request):
 
 
 @api_view(["POST"])
+@parser_classes([MultiPartParser, FormParser])
 def upload_log(request):
 
-    uploaded_file = request.FILES.get("file")
+    serializer = LogUploadSerializer(data=request.data)
 
-    if not uploaded_file:
+    if not serializer.is_valid():
         return Response(
-            {"error": "No file uploaded"},
+            serializer.errors,
             status=400
         )
+
+    uploaded_file = serializer.validated_data["file"]
 
     parsed_logs = parse_log(uploaded_file)
 
