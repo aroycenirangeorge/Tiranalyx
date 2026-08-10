@@ -1,3 +1,4 @@
+import "./App.css"
 import { useState } from "react"
 
 function App() {
@@ -44,99 +45,192 @@ function App() {
   }
 
   return (
-    <div>
-      <h1>Tiranalyx</h1>
-      <p>AI Log Intelligence</p>
+  <div className="app">
+    <div className="container">
 
-      <input
-        type="file"
-        accept=".log"
-        onChange={(event) => {
-          setFile(event.target.files[0])
-          setLogs([])
-          setAnalysis(null)
-          setAiAnalysis("")
-          setError("")
-        }}
-      />
+      <header className="header">
+        <h1>Tiranalyx</h1>
+        <p>AI Log Intelligence</p>
+      </header>
 
-      {file && (
-        <p>
-          Selected file: {file.name}
-        </p>
-      )}
+      <div className="upload-box">
 
-      <button onClick={uploadLog} disabled={loading}>
-        {loading ? "Analyzing..." : "Analyze Log"}
-      </button>
+        <input
+          className="file-input"
+          type="file"
+          accept=".log"
+          onChange={(event) => {
+            setFile(event.target.files[0])
+            setLogs([])
+            setAnalysis(null)
+            setAiAnalysis("")
+            setError("")
+          }}
+        />
 
-      {error && (
-        <p>{error}</p>
-      )}
+        {file && (
+          <p className="selected-file">
+            Selected file: {file.name}
+          </p>
+        )}
+
+        <button
+          className="analyze-button"
+          onClick={uploadLog}
+          disabled={loading}
+        >
+          {loading ? "Analyzing..." : "Analyze Log"}
+        </button>
+
+        {error && (
+          <p className="error">{error}</p>
+        )}
+
+      </div>
 
       {analysis && (
-        <div>
-          <h2>Analysis</h2>
+        <section className="section">
 
-          <p>Total Logs: {analysis.total_logs}</p>
-          <p>Errors: {analysis.statistics.error_count}</p>
-          <p>Warnings: {analysis.statistics.warning_count}</p>
-          <p>Info: {analysis.statistics.info_count}</p>
-        </div>
+          <h2 className="section-title">
+            Analysis
+          </h2>
+
+          <div className="stats">
+
+            <div className="stat-card">
+              <div className="stat-number">
+                {analysis.total_logs}
+              </div>
+              <div className="stat-label">
+                Total Logs
+              </div>
+            </div>
+
+            <div className="stat-card">
+              <div className="stat-number">
+                {analysis.statistics.error_count}
+              </div>
+              <div className="stat-label">
+                Errors
+              </div>
+            </div>
+
+            <div className="stat-card">
+              <div className="stat-number">
+                {analysis.statistics.warning_count}
+              </div>
+              <div className="stat-label">
+                Warnings
+              </div>
+            </div>
+
+            <div className="stat-card">
+              <div className="stat-number">
+                {analysis.statistics.info_count}
+              </div>
+              <div className="stat-label">
+                Info
+              </div>
+            </div>
+
+          </div>
+
+        </section>
       )}
 
-      {analysis && analysis.issues && analysis.issues.length > 0 && (
-        <div>
-          <h2>Detected Issues</h2>
+      {analysis?.issues?.length > 0 && (
+        <section className="section">
 
-          {analysis.issues.map((issue, index) => (
-            <div key={index}>
-              <h3>
-                {issue.issue_type} — {issue.severity}
-              </h3>
+          <h2 className="section-title">
+            Detected Issues
+          </h2>
 
-              <p>
-                <strong>Message:</strong> {issue.message}
-              </p>
+          <div className="issue-list">
 
-              <p>
-                <strong>Timestamp:</strong> {issue.timestamp}
-              </p>
+            {analysis.issues.map((issue, index) => (
 
-              <p>
-                <strong>Impact:</strong> {issue.impact}
-              </p>
-            </div>
-          ))}
-        </div>
+              <div className="issue-card" key={index}>
+
+                <div className="issue-header">
+
+                  <span className="issue-type">
+                    {issue.issue_type}
+                  </span>
+
+                  <span className="severity">
+                    {issue.severity}
+                  </span>
+
+                </div>
+
+                <div className="issue-message">
+                  {issue.message}
+                </div>
+
+                <div className="issue-meta">
+                  {issue.timestamp}
+                </div>
+
+                <div className="issue-impact">
+                  <strong>Impact:</strong>{" "}
+                  {issue.impact}
+                </div>
+
+              </div>
+
+            ))}
+
+          </div>
+
+        </section>
       )}
 
       {aiAnalysis && (
-        <div>
-          <h2>AI Analysis</h2>
+        <section className="section">
 
-          <pre>
-            {aiAnalysis}
-          </pre>
-        </div>
+          <h2 className="section-title">
+            AI Analysis
+          </h2>
+
+          <div className="ai-box">
+            <pre>{aiAnalysis}</pre>
+          </div>
+
+        </section>
       )}
 
       {logs.length > 0 && (
-        <div>
-          <h2>Parsed Logs</h2>
+        <section className="section">
 
-          {logs.map((log, index) => (
-            <div key={index}>
-              <p>
-                <strong>{log.level}</strong>{" "}
-                {log.timestamp} — {log.message}
-              </p>
-            </div>
-          ))}
-        </div>
+          <h2 className="section-title">
+            Parsed Logs
+          </h2>
+
+          <div className="logs">
+
+            {logs.map((log, index) => (
+
+              <div className="log-entry" key={index}>
+
+                <span className={`log-level ${log.level}`}>
+                  {log.level}
+                </span>
+
+                <span className="log-message">
+                  {log.timestamp} — {log.message}
+                </span>
+
+              </div>
+
+            ))}
+
+          </div>
+
+        </section>
       )}
+
     </div>
+  </div>
   )
 }
-
 export default App
