@@ -1,4 +1,5 @@
 import os
+import json
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -31,27 +32,27 @@ You are Tiranalyx, an AI log analysis assistant.
 
 Analyze the following structured incident context.
 
-Your task is to identify:
-1. What happened
-2. The likely root cause
-3. Recommended action
-
 Only use evidence provided in the context.
 Do not invent log events.
 
 Incident context:
 {context}
 
-Return the response in this format:
+Return ONLY valid JSON.
+Do not use markdown.
+Do not add explanations outside the JSON.
 
-Problem:
-<problem>
+Use exactly this structure:
 
-Likely Cause:
-<likely cause>
-
-Recommended Action:
-<recommended action>
+{{
+    "problem": "Brief description of what happened",
+    "likely_cause": "Most likely cause based only on the provided evidence",
+    "recommended_actions": [
+        "Action 1",
+        "Action 2",
+        "Action 3"
+    ]
+}}
 """
 
     response = client.chat.completions.create(
@@ -62,8 +63,17 @@ Recommended Action:
                 "content": prompt
             }
         ],
-        max_tokens=300,
+        max_tokens=400,
         temperature=0.2
     )
 
-    return response.choices[0].message.content
+    content = response.choices[0].message.content
+
+    try:
+        return json.loads(content)
+    except json.JSONDecodeError:
+        return {
+            "problem": "AI returned an invalid response.",
+            "likely_cause": "",
+            "recommended_actions": []
+        }

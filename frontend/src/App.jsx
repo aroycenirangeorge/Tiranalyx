@@ -7,7 +7,7 @@ function App() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [analysis, setAnalysis] = useState(null)
-  const [aiAnalysis, setAiAnalysis] = useState("")
+  const [aiAnalysis, setAiAnalysis] = useState(null)
 
   const uploadLog = async () => {
     if (!file) {
@@ -63,7 +63,7 @@ function App() {
             setFile(event.target.files[0])
             setLogs([])
             setAnalysis(null)
-            setAiAnalysis("")
+            setAiAnalysis(null)
             setError("")
           }}
         />
@@ -186,17 +186,31 @@ function App() {
       )}
 
       {aiAnalysis && (
-        <section className="section">
+        <div>
+          <h2>AI Analysis</h2>
 
-          <h2 className="section-title">
-            AI Analysis
-          </h2>
-
-          <div className="ai-box">
-            <pre>{aiAnalysis}</pre>
+          <div>
+            <h3>Problem</h3>
+            <p>{aiAnalysis.problem}</p>
           </div>
 
-        </section>
+          <div>
+            <h3>Likely Cause</h3>
+            <p>{aiAnalysis.likely_cause}</p>
+          </div>
+
+          <div>
+            <h3>Recommended Actions</h3>
+
+            <ol>
+              {aiAnalysis.recommended_actions.map((action, index) => (
+                <li key={index}>
+                  {action}
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
       )}
 
       {logs.length > 0 && (
