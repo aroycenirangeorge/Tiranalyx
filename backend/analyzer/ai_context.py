@@ -11,7 +11,9 @@ def build_ai_context(analysis):
         context["issues"].append({
             "type": issue["issue_type"],
             "timestamp": issue["timestamp"],
-            "message": issue["message"]
+            "message": issue["message"],
+            "severity": issue["severity"],
+            "impact": issue["impact"]
         })
 
     return context

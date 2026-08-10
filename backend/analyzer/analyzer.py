@@ -25,6 +25,40 @@ def detect_issue(log):
     return "GENERAL"
 
 
+def determine_severity(issue_type):
+    high_severity = {
+        "DATABASE",
+        "REDIS",
+        "TIMEOUT",
+        "MEMORY",
+        "CONNECTION"
+    }
+
+    if issue_type in high_severity:
+        return "HIGH"
+
+    if issue_type == "DISK":
+        return "MEDIUM"
+
+    return "MEDIUM"
+
+def determine_impact(issue_type):
+
+    impacts = {
+        "DATABASE": "Application may be unable to read or write data.",
+        "REDIS": "Caching or session-related operations may fail.",
+        "TIMEOUT": "Application requests may experience delays or failures.",
+        "MEMORY": "Application performance may degrade or services may crash.",
+        "CONNECTION": "Communication with a dependent service may fail.",
+        "DISK": "Application may experience storage-related failures.",
+        "GENERAL": "Application functionality may be affected."
+    }
+
+    return impacts.get(
+        issue_type,
+        "Application functionality may be affected."
+    )
+
 def analyze_logs(logs):
 
     level_counts = Counter()
@@ -40,17 +74,23 @@ def analyze_logs(logs):
         level_counts[level] += 1
 
         if level == "ERROR":
+
             issue_type = detect_issue(log)
+            severity = determine_severity(issue_type)
+            impact = determine_impact(issue_type)
 
             error = {
                 **log,
-                "issue_type": issue_type
+                "issue_type": issue_type,
+                "severity": severity,
+                "impact": impact
             }
 
             errors.append(error)
             issues.append(error)
 
         elif level == "WARNING":
+
             warnings.append(log)
 
     return {

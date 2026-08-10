@@ -67,7 +67,7 @@ function App() {
       )}
 
       <button onClick={uploadLog} disabled={loading}>
-        {loading ? "Uploading..." : "Analyze Log"}
+        {loading ? "Analyzing..." : "Analyze Log"}
       </button>
 
       {error && (
@@ -82,6 +82,32 @@ function App() {
           <p>Errors: {analysis.statistics.error_count}</p>
           <p>Warnings: {analysis.statistics.warning_count}</p>
           <p>Info: {analysis.statistics.info_count}</p>
+        </div>
+      )}
+
+      {analysis && analysis.issues && analysis.issues.length > 0 && (
+        <div>
+          <h2>Detected Issues</h2>
+
+          {analysis.issues.map((issue, index) => (
+            <div key={index}>
+              <h3>
+                {issue.issue_type} — {issue.severity}
+              </h3>
+
+              <p>
+                <strong>Message:</strong> {issue.message}
+              </p>
+
+              <p>
+                <strong>Timestamp:</strong> {issue.timestamp}
+              </p>
+
+              <p>
+                <strong>Impact:</strong> {issue.impact}
+              </p>
+            </div>
+          ))}
         </div>
       )}
 
