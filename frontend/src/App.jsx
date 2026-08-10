@@ -5,6 +5,8 @@ function App() {
   const [logs, setLogs] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
+  const [analysis, setAnalysis] = useState(null)
+  const [aiAnalysis, setAiAnalysis] = useState("")
 
   const uploadLog = async () => {
     if (!file) {
@@ -29,7 +31,10 @@ function App() {
       }
 
       const data = await response.json()
-      setLogs(data)
+
+      setLogs(data.logs)
+      setAnalysis(data.analysis)
+      setAiAnalysis(data.ai_analysis)
 
     } catch (err) {
       setError(err.message)
@@ -49,6 +54,8 @@ function App() {
         onChange={(event) => {
           setFile(event.target.files[0])
           setLogs([])
+          setAnalysis(null)
+          setAiAnalysis("")
           setError("")
         }}
       />
@@ -65,6 +72,27 @@ function App() {
 
       {error && (
         <p>{error}</p>
+      )}
+
+      {analysis && (
+        <div>
+          <h2>Analysis</h2>
+
+          <p>Total Logs: {analysis.total_logs}</p>
+          <p>Errors: {analysis.statistics.error_count}</p>
+          <p>Warnings: {analysis.statistics.warning_count}</p>
+          <p>Info: {analysis.statistics.info_count}</p>
+        </div>
+      )}
+
+      {aiAnalysis && (
+        <div>
+          <h2>AI Analysis</h2>
+
+          <pre>
+            {aiAnalysis}
+          </pre>
+        </div>
       )}
 
       {logs.length > 0 && (
