@@ -6,6 +6,12 @@ Tiranalyx is an AI-powered log analysis platform that automatically parses appli
 
 It is designed to reduce the time developers spend manually scanning large application logs.
 
+## Demonstration
+
+🔗 Live Application: http://35.154.90.3/
+
+🔗 GitHub Repository: https://github.com/aroycenirangeorge/Tiranalyx
+
 ---
 
 ## 🚀 Features
@@ -64,7 +70,7 @@ It is designed to reduce the time developers spend manually scanning large appli
               └─────────────────────────────────┘
 ```
 
-<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/6247e2d2-7e6d-43d5-b809-07c703adeb10" />
+<img width="1699" height="926" alt="image" src="https://github.com/user-attachments/assets/b3dd9f16-e23e-4094-8581-f003bf33450a" />
 
 ---
 
@@ -330,18 +336,26 @@ Tiranalyx was built to demonstrate the integration of:
 
 ---
 
-## 🚀 Future Improvements
+## 🖥️ Screenshots
 
-Possible future enhancements include:
+Dashboard
 
-* Support for additional log formats
-* Real-time log monitoring
-* Historical log analytics
-* Advanced anomaly detection
-* Authentication and user accounts
-* Containerized deployment using Docker
-* Cloud-native deployment
-* Alerting through email or messaging platforms
+Add your dashboard screenshot here.
+
+
+
+
+Log Analysis
+
+Add your analysis-result screenshot here.
+
+
+
+
+CI/CD Pipeline
+
+Add your GitHub Actions screenshot here.
+
 
 ---
 
