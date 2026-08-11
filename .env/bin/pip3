@@ -1,4 +1,4 @@
-#!/home/user/NIRA/College/Placements/Cognizant/Tiranalyx/.env/bin/python3
+#!/home/ec2-user/Tiranalyx/.env/bin/python3.11
 # -*- coding: utf-8 -*-
 import re
 import sys
