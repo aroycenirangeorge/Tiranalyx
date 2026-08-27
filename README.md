@@ -361,7 +361,14 @@ Add your GitHub Actions screenshot here.
 
 ## 👨‍💻 Author
 
-**Royce Niran George A**
+**Royce Niran George A** <br>
+Engineering Student | Software Developer | Data Engineer | FPGA Developer | Cloud & DevOps Enthusiast <br>
+
+🌐 GitHub: [@aroycenirangeorge](www.github.com/aroycenirangeorge) <br>
+💼 LinkedIn: [AJ Royce Niran George](www.linkedin.com/in/ajroycenirangeorge) <br>
+🎓 Saveetha Engineering College <br>
+
+✨ Built with all love, no hate :)
 
 ---
 
