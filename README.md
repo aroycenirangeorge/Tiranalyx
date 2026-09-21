@@ -340,22 +340,13 @@ Tiranalyx was built to demonstrate the integration of:
 
 Dashboard
 
-Add your dashboard screenshot here.
-
-
-
+<img width="1920" height="1053" alt="image" src="https://github.com/user-attachments/assets/6c2bad99-0e75-4d31-9ca0-26ea0810108f" />
 
 Log Analysis
 
-Add your analysis-result screenshot here.
+<img width="1920" height="1053" alt="image" src="https://github.com/user-attachments/assets/3d172ef3-a066-480c-ae8e-056cc4b7a9dc" />
 
-
-
-
-CI/CD Pipeline
-
-Add your GitHub Actions screenshot here.
-
+<img width="1920" height="1053" alt="image" src="https://github.com/user-attachments/assets/f0afaa86-5c5f-40a2-8fc6-b2fc6c07c97d" />
 
 ---
 
