@@ -18,6 +18,7 @@ if not HF_TOKEN:
 
 
 client = InferenceClient(
+    provider="featherless-ai",
     api_key=HF_TOKEN
 )
 
