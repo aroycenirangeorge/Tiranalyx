@@ -1,0 +1,7 @@
+2026-08-10 10:15:01 INFO Application started successfully
+2026-08-10 10:15:04 WARNING Memory usage at 78%
+2026-08-10 10:15:12 ERROR Request timeout while contacting payment service
+2026-08-10 10:15:18 INFO User profile loaded
+2026-08-10 10:15:25 ERROR Connection refused to authentication service
+2026-08-10 10:15:31 WARNING Disk usage at 91%
+2026-08-10 10:15:40 INFO Background job completed
