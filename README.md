@@ -8,7 +8,7 @@ It is designed to reduce the time developers spend manually scanning large appli
 
 ## Demonstration
 
-🔗 Live Application: http://35.154.90.3/
+🔗 Live Application: http://35.154.90.x/
 
 🔗 GitHub Repository: https://github.com/aroycenirangeorge/Tiranalyx
 
