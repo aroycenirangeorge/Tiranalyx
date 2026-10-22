@@ -28,6 +28,12 @@ function App() {
       })
 
       if (!response.ok) {
+        if (response.status === 429 || response.status >= 500) {
+          throw new Error(
+            "Sorry for the inconvenience. Hugging Face tokens have been exhausted. Please try again later."
+          )
+        }
+
         throw new Error("Failed to upload log")
       }
 
@@ -81,6 +87,10 @@ function App() {
         >
           {loading ? "Analyzing..." : "Analyze Log"}
         </button>
+
+        <p className="token-notice">
+          Sorry for the inconvenience. Hugging Face tokens are currently exhausted.
+        </p>
 
         {error && (
           <p className="error">{error}</p>
