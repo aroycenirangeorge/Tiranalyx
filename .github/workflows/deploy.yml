@@ -1,4 +1,3 @@
-```yaml
 name: Tiranalyx CI/CD
 
 on:
@@ -60,4 +59,3 @@ jobs:
             sudo systemctl reload nginx
 
             echo "Frontend deployment completed successfully."
-```
